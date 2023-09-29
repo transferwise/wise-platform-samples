@@ -6,7 +6,7 @@ More info on our [API docs](https://docs.wise.com/api-docs/features/authenticati
 
 ## Key elements
 
-We're using [Next.js](https://nextjs.org/), because it allows us to show server and client side code in single app.
+We're using [Next.js](https://nextjs.org/), because it allows us to show server and client side code in a single app.
 
 Start off by exploring `/pages/index.tsx`.
 
