@@ -1,5 +1,4 @@
-// This component/page is responsible for making sure that all the
-// required variables are stored in mock storage.
+// Special page for setting up environment vars. You wouldn't need it on your app!
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
