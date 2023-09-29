@@ -2,8 +2,6 @@ import { getSelectedWiseProfileId, getWiseEnvironmentConfig, getWiseRefreshToken
 import store from '../db/mockDataStore';
 import { toUrlencoded } from '../utils/toUrlencoded';
 
-const MINUTE_IN_MS = 60 * 1000; 
-
 export const refreshWiseToken = async () => {
   const config = getWiseEnvironmentConfig();
   const refreshToken = getWiseRefreshToken();
@@ -24,8 +22,8 @@ export const refreshWiseToken = async () => {
     store.set(selectedProfileId, {
       accessToken: result.access_token,
       refreshToken: result.refresh_token,
-      // turns expires_in (seconds) into timestamp so we can use it later
-      accessTokenExpiresAt: Date.now() + (result.expires_in * MINUTE_IN_MS),
+      // Turns expires_in (seconds) into JS timestamp (milliseconds) so we can use it later
+      accessTokenExpiresAt: Date.now() + result.expires_in * 1000,
     });
   }
 };
