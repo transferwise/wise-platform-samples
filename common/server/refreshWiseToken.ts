@@ -1,5 +1,5 @@
 import { getSelectedWiseProfileId, getWiseEnvironmentConfig, getWiseRefreshToken } from '../db';
-import store from '../db/mockDataStore';
+import { store } from '../db';
 import { toUrlencoded } from '../utils/toUrlencoded';
 
 export const refreshWiseToken = async () => {

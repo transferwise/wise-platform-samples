@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 import { DEFAULT_REDIRECT_URI } from '../../common/const';
-import store from '../../common/db/mockDataStore';
+import { store } from '../../common/db';
 import { getPostBodyAsURLSearchParams } from '../../common/utils/getPostBodyAsURLSearchParams';
 
 // This function runs only on the server side.
@@ -47,7 +47,11 @@ export default function EnvSetupPage() {
                 In order to make calls to the Wise API, it's necessary to
                 configure certain environment variables.
                 <br />
-                Sample app stores those locally in <code>storage.json</code> file (root dir).<br />
+                Sample app stores those locally in <code>
+                  storage.json
+                </code>{' '}
+                file (root dir).
+                <br />
                 <a href="https://docs.wise.com/api-docs/features/authentication-access">
                   Read more about authentication & access
                 </a>
@@ -82,13 +86,15 @@ export default function EnvSetupPage() {
               {redirectUri !== DEFAULT_REDIRECT_URI && (
                 <p className="bg-light border-1 p-a-1">
                   This sample app expects redirect URL to be{' '}
-                  <code>http://localhost:3000/wise-redirect</code>.<br /><br />
-                  You can still use the app though. Wise OAuth page redirects you back to:<br />
-                  <code>
-                    {redirectUri}?code=123&profileId=223
-                  </code>
-                  <br /> 
-                  You just have to copy the parameters and navigate to:<br />
+                  <code>http://localhost:3000/wise-redirect</code>.<br />
+                  <br />
+                  You can still use the app though. Wise OAuth page redirects
+                  you back to:
+                  <br />
+                  <code>{redirectUri}?code=123&profileId=223</code>
+                  <br />
+                  You just have to copy the parameters and navigate to:
+                  <br />
                   <code>
                     http://localhost:3000/wise-redirect?code=123&profileId=223
                   </code>

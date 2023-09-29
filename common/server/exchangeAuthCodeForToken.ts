@@ -1,5 +1,5 @@
 import { getWiseEnvironmentConfig } from '../db';
-import store from '../db/mockDataStore';
+import { store } from '../db';
 import { toUrlencoded } from '../utils/toUrlencoded';
 
 // Obtain Wise access token and refresh token.

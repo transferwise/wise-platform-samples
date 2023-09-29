@@ -1,8 +1,12 @@
-import store from './mockDataStore';
+import JSONdb from '../lib/Simple-JSONdb';
+
 import type { Config } from '../types/Config';
 import type { Tokens } from '../types/Tokens';
 
 const ONE_HOUR_IN_MS = 60 * 60 * 1000;
+
+// Instead of proper database we have a simple JSON file
+export const store = new JSONdb('../storage.json');
 
 export const getSelectedWiseProfileId = () => store.get('selectedProfileId') as string;
 
@@ -10,6 +14,9 @@ export const getWiseEnvironmentConfig = () => store.get('config') as Config;
 
 export const getWiseTokens = () => {
   const selectedProfileId = getSelectedWiseProfileId();
+  if (!selectedProfileId) {
+    throw Error('No selectedProfileId');
+  }
   return store.get(selectedProfileId) as Tokens;
 };
 
