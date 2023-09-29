@@ -1,6 +1,6 @@
 # OAuth Connect Sample 
 
-This is an sample code of how to customer can connect their app to your app.
+This is an sample code of how to customer can connect their Wise account to your app.
 
 More info on our [API docs](https://docs.wise.com/api-docs/features/authentication-access).
 
