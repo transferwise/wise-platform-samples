@@ -11,7 +11,7 @@ type ResponseData = {
 };
 
 // This code runs on server side (on your backend).
-// We check if Wise account has been connected and returns Wise profile details 
+// We check if Wise account has been connected and return Wise profile details 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
