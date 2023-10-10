@@ -6,6 +6,9 @@ export const refreshWiseToken = async () => {
   const config = getWiseEnvironmentConfig();
   const refreshToken = getWiseRefreshToken();
   const selectedProfileId = getSelectedWiseProfileId();
+  if (!selectedProfileId) {
+    throw Error('No selectedProfileId');
+  }
   const headers = new Headers();
   headers.set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
   headers.set(

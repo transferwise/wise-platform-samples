@@ -37,7 +37,7 @@ export const exchangeAuthCodeForToken = async (
   // Stores Wise profileId and tokens in our demo database (storage.json).
   // In a production environment, you would associate these tokens with a logged-in user
   // in your system.
-  store.set('selectedProfileId', profileId);
+  store.set('selectedProfile', { id: profileId });
   store.set(profileId, {
     accessToken: result.access_token,
     refreshToken: result.refresh_token,

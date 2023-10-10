@@ -7,12 +7,13 @@ import {
   getWiseEnvironmentConfig,
   getSelectedWiseProfileId,
   isWiseTokenAboutToExpire,
+  getWiseOAuthPageURL,
 } from '../../common/db';
 import { fetchProfileDetails } from '../../common/server/fetchProfileDetails';
 import { refreshWiseToken } from '../../common/server/refreshWiseToken';
 
 type PageProps = {
-  wiseOauthPageUrl?: string;
+  wiseOAuthPageURL?: string;
   redirectUri?: string;
   name?: string;
 };
@@ -41,8 +42,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   }
 
   // Accounts have not been connected. We render a "Connect your Wise account" button (see below)
-  const wiseOauthPageUrl = `${config.oauthPageUrl}?client_id=${config.clientId}&redirect_uri=${config.redirectUri}`;
-  return { props: { wiseOauthPageUrl, redirectUri: config.redirectUri } };
+  const wiseOAuthPageURL = getWiseOAuthPageURL();
+  return { props: { wiseOAuthPageURL, redirectUri: config.redirectUri } };
 };
 
 // Frontend component of the page. 
@@ -79,7 +80,7 @@ const OAuthConnectPage: FC<PageProps> = (props) => (
                 </code>
               </p>
             )}
-            <a href={props.wiseOauthPageUrl} className="button primary">
+            <a href={props.wiseOAuthPageURL} className="button primary">
               Connect your Wise account
             </a>
           </>
