@@ -12,9 +12,10 @@ type PageProps = {
 };
 
 // Makes sure that Wise environment vars (clientId, clientSecret, redirectUri etc.) are set up.
-// You wouldn't need it on your app!
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const config = getWiseEnvironmentConfig(); // returns Wise API clientId, clientSecret, redirectUri etc.
+  
+   // Special page for setting up environment vars. You wouldn't need it on your app!
   if (!config) {
     return { redirect: { destination: '/env-setup', permanent: false } };
   }
