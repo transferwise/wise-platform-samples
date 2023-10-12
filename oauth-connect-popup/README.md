@@ -2,8 +2,8 @@
 
 In our regular authorization flow your application redirects the customer to the Wise authorization page. With some additional steps it can be implemented inside a popup window, meaning that the user does not leave your app.
 
-On high level you'll only need to do two changes:
-- open Wise authorization page in a popup window instead of a full redirect
+On a high level you'll only need to do two changes:
+- open the Wise authorization page in a popup window instead of a full redirect
 - build a mechanism that understands when the flow is complete
 
 See sequence diagram below for more details.
