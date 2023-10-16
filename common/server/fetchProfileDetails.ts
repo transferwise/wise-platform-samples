@@ -3,6 +3,9 @@ import { getSelectedWiseProfileId, getWiseEnvironmentConfig, getWiseAccessToken 
 export const fetchProfileDetails = async () => {
   const config = getWiseEnvironmentConfig();
   const selectedProfileId = getSelectedWiseProfileId();
+  if (!selectedProfileId) {
+    throw Error('No selectedProfileId');
+  }
   const oauthToken = getWiseAccessToken();
   const headers = new Headers();
   headers.set('Authorization', `Bearer ${oauthToken}`);
