@@ -40,6 +40,7 @@ export default async function handler(
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
   headers.set('Authorization', `Bearer ${oauthToken}`);
+  
   // Pass on X_2FA_APPROVAL_HEADER if frontend sent it to us
   if (req.headers[X_2FA_APPROVAL_HEADER]) {
     headers.set(

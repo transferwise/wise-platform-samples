@@ -1,6 +1,6 @@
 # Strong Customer Authentication (SCA) Sample 
 
-Strong Customer Authentication (SCA) is a new European regulatory requirement as part of the second Payment Services Directive (PSD2) for authenticating online payments and make them more secure.
+Strong Customer Authentication (SCA) is a European regulatory requirement as part of the second Payment Services Directive (PSD2) for authenticating online payments and make them more secure.
 
 There are some actions such as funding a transfer from your multi-currency account or viewing the statement that require SCA within the UK and EEA. SCA builds additional authentication by asking two of the following three elements: something the customer **knows**, something the customer **has** and something the customer **is**. If you don't integrate with it and make a request to an SCA protected endpoint, your request will be rejected.
 
