@@ -1,6 +1,6 @@
 import { create, Mode } from '@transferwise/approve-api-action-helpers';
 import Head from 'next/head';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import {
   getWiseEnvironmentConfig,
@@ -35,20 +35,20 @@ export const getServerSideProps = async () => {
 // Frontend component of the page.
 // Renders a button to connect Wise Account or your name if already connected.
 const SCAPage: FC = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     // Prevent the browser from reloading the page
     e.preventDefault();
+    setIsSuccess(false);
     // Create a test transfer
     const transfer = await fetch('/api/create-transfer').then((response) =>
       response.json()
     );
     // Fund that transfer using money on your account (SCA protected API call)
     const wiseSCARequest = create({ mode: Mode.SANDBOX });
-    const result = await wiseSCARequest(
-      `/api/fund-transfer/${transfer.id}`
-    ).then((response) => response.json());
-    // TODO: handle success better way
-    console.log(result);
+    await wiseSCARequest(`/api/fund-transfer/${transfer.id}`);
+    setIsSuccess(true);
   };
 
   return (
@@ -60,10 +60,18 @@ const SCAPage: FC = () => {
         <div className="container">
           <h1>Strong Customer Authentication (SCA) sample</h1>
           <p>
-            ... mention that "Fund a transfer" is SCA protected endpoint. ...We
-            create a transfer and fund it.
+            Clicking on "Send money" creates a dummy transfer and tries to fund it using
+            your Wise account.
+            <br />
+            <a
+              href="https://docs.wise.com/api-docs/api-reference/transfer#fund"
+              target="_blank"
+            >
+              Fund a transfer
+            </a> is SCA protected endpoint. A popup will appear asking
+            to confirm the action.
           </p>
-
+          {isSuccess && <p className="text-success text-center">Success!</p>}
           <form method="post" onSubmit={handleSubmit}>
             <button type="submit" className="button primary">
               Send money

@@ -8,20 +8,17 @@ import {
 import { refreshWiseToken } from '../../../common/server/refreshWiseToken';
 
 // This code runs on server side (on your backend).
-// We check if Wise account has been connected and return Wise profile details
+// This endpoint will create a transfer (quote + recipient + transfer) on Wise.
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<unknown>
 ) {
   const config = getWiseEnvironmentConfig();
   const oauthToken = getWiseAccessToken();
-
-  // Check if accounts have been connected before (based on if selected profile exists)
   const selectedWiseProfileId = getSelectedWiseProfileId();
-  const isWiseAccountConnected = Boolean(selectedWiseProfileId);
 
   // Wise account not connected, so cannot call Wise API
-  if (!isWiseAccountConnected) {
+  if (!selectedWiseProfileId) {
     res.statusCode = 404;
     return;
   }
@@ -32,7 +29,7 @@ export default async function handler(
   }
 
   // We have a valid token, so we can proceed with the call to Wise API
-  // 1. Creates a quote (TODO: link to docs)
+  // 1. Creates a quote (https://docs.wise.com/api-docs/api-reference/quote)
   const quote = await fetch(
     `${config.host}/v3/profiles/${selectedWiseProfileId}/quotes`,
     {
@@ -50,7 +47,7 @@ export default async function handler(
     }
   ).then((response) => response.json());
 
-  // 2. Creates a new recipient account (TODO: link to docs)
+  // 2. Creates a new recipient account (https://docs.wise.com/api-docs/api-reference/recipient)
   const recipient = await fetch(`${config.host}/v1/accounts`, {
     method: 'POST',
     headers: {
@@ -78,7 +75,7 @@ export default async function handler(
     }),
   }).then((response) => response.json());
 
-  // 3. Transfer (TODO: link to docs)
+  // 3. Transfer (https://docs.wise.com/api-docs/api-reference/transfer)
   const transfer = await fetch(`${config.host}/v1/transfers`, {
     method: 'POST',
     headers: {

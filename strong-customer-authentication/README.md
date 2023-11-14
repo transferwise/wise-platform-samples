@@ -1,10 +1,13 @@
 # Strong Customer Authentication (SCA) Sample 
 
-> TODO: update description
+Strong Customer Authentication (SCA) is a new European regulatory requirement as part of the second Payment Services Directive (PSD2) for authenticating online payments and make them more secure.
 
-This is an sample code of how to customer can connect their Wise account to your app.
+There are some actions such as funding a transfer from your multi-currency account or viewing the statement that require SCA within the UK and EEA. SCA builds additional authentication by asking two of the following three elements: something the customer **knows**, something the customer **has** and something the customer **is**. If you don't integrate with it and make a request to an SCA protected endpoint, your request will be rejected.
 
-More info on our [API docs](https://docs.wise.com/api-docs/features/authentication-access).
+In this sample we're creating a dummy transfer and attempt to fund it using money on Wise account.
+We offer a [library](https://www.npmjs.com/package/@transferwise/approve-api-action-helpers) to make your integration easier.
+
+More info on our [API docs](https://docs.wise.com/api-docs/features/strong-customer-authentication-2fa/auth-code-sca).
 
 ## Key elements
 
@@ -20,5 +23,11 @@ Prerequisite: make sure you have [Node.js](https://nodejs.org/en) installed.
 
 ## Recording
 
-https://github.com/transferwise/wise-platform-samples/assets/39053304/58910b2b-c41a-441b-bafc-43ab7da9a8e7
+https://github.com/transferwise/wise-platform-samples/assets/39053304/6ab12735-745b-4d57-a8a4-36258200153e
 
+## Sequence diagram
+
+![sca_with_helper_library](https://github.com/transferwise/wise-platform-samples/assets/39053304/da30ea45-a236-46ff-852d-06024c189c62)
+
+For more details have a look at our [Auth Code SCA
+](https://docs.wise.com/api-docs/features/strong-customer-authentication-2fa/auth-code-sca) documentation.
