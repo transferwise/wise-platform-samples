@@ -397,3 +397,6 @@ button:active:not(:disabled) {
 .border-1 {
   border-radius: 4px;
 }
+.text-center {
+  text-align: center;
+}

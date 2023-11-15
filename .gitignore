@@ -1,2 +1,5 @@
 # sample app data store
 storage.json
+
+# misc
+**/.DS_Store
